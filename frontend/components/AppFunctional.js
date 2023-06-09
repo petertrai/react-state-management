@@ -73,11 +73,31 @@ export default function AppFunctional(props) {
   function move(evt) {
     // This event handler can use the helper above to obtain a new index for the "B",
     // and change any states accordingly.
-    const nextIndex = getNextIndex(evt.target.id)
+    const direction = evt.target.id
+    const nextIndex = getNextIndex(direction)
+    let cantGoMessage = ''
 
     if (nextIndex !== index) {
       setIndex(nextIndex)
       setSteps(steps + 1)
+    } else {
+      switch (direction) {
+        case 'left':
+          cantGoMessage = "You can't go left.";
+          break;
+        case 'up':
+          cantGoMessage = "You can't go up.";
+          break;
+        case 'right':
+          cantGoMessage = "You can't go right.";
+          break;
+        case 'down':
+          cantGoMessage = "You can't go down.";
+          break;
+        default:
+          break;
+      }
+      setMessage(cantGoMessage)
     }
 
   }
@@ -113,7 +133,7 @@ export default function AppFunctional(props) {
     <div id="wrapper" className={props.className}>
       <div className="info">
         <h3 id="coordinates">{getXY()}</h3>
-        <h3 id="steps">You moves {steps} times</h3>
+        <h3 id="steps">You moved {steps} times</h3>
       </div>
       <div id="grid">
         {

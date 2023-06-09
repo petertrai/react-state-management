@@ -72,13 +72,34 @@ export default class AppClass extends React.Component {
   move = (evt) => {
     // This event handler can use the helper above to obtain a new index for the "B",
     // and change any states accordingly.
-    const nextIndex = this.getNextIndex(evt.target.id)
+    const direction = evt.target.id
+    const nextIndex = this.getNextIndex(direction)
+    let cantGoMessage = ''
 
     if (nextIndex !== this.state.index) {
       this.setState((prevState) => ({
         index: nextIndex,
-        steps: prevState.steps + 1
+        steps: prevState.steps + 1,
+        cantGoMessage: ''
       }));
+    } else {
+      switch (direction) {
+        case 'left':
+          cantGoMessage = "You can't go left.";
+          break;
+        case 'up':
+          cantGoMessage = "You can't go up.";
+          break;
+        case 'right':
+          cantGoMessage = "You can't go right.";
+          break;
+        case 'down':
+          cantGoMessage = "You can't go down.";
+          break;
+        default:
+          break;
+      }
+      this.setState({ ...this.state, message: cantGoMessage })
     }
   }
 
