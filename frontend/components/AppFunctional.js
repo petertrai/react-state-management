@@ -5,7 +5,7 @@ import axios from 'axios'
 const initialMessage = ''
 const initialEmail = ''
 const initialSteps = 0
-const initialIndex = 4 // the index the "B" is at
+const initialIndex = 4 
 
 export default function AppFunctional(props) {
   const [message, setMessage] = useState(initialMessage)
@@ -127,6 +127,8 @@ export default function AppFunctional(props) {
         setMessage(err.response.data.message);
 // err.response.data.message
       })
+
+      setEmail(initialEmail)
   }
 
   return (
