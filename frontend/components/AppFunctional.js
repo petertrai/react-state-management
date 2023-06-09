@@ -97,7 +97,7 @@ export default function AppFunctional(props) {
         default:
           break;
       }
-      setMessage(cantGoMessage)
+      setMessage( cantGoMessage)
     }
 
   }
@@ -124,8 +124,8 @@ export default function AppFunctional(props) {
         setMessage(res.data.message)
       })
       .catch(err => {
-        console.error(err);
-
+        setMessage(err.response.data.message);
+// err.response.data.message
       })
   }
 
